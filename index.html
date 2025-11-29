@@ -3,444 +3,108 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>NamaStudio — Game Creator</title>
-
-  <!-- Google font (retro/pixel feel). Ganti/atau hapus jika tak mau -->
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+  <title>@Saskehhaja — Linkpage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0e0b13;           /* very dark */
-      --panel:#12101a;
-      --accent:#7b3ff0;       /* purple */
-      --accent-2:#5a2bd6;
-      --muted:#bfb8d9;
-      --glass: rgba(255,255,255,0.04);
-      --radius:12px;
-      --maxwidth:1100px;
+      --bg1:#2b2b7a;
+      --bg2:#2f8f6b;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent:#5b21b6;
+      --glass: rgba(255,255,255,0.06);
     }
-
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg, var(--bg), #07060a 120%);
-      color: #eee;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.5;
-      padding:24px;
-      display:flex;
-      justify-content:center;
-    }
-
-    .container{
-      width:100%;
-      max-width:var(--maxwidth);
-    }
-
-    header{
-      display:flex;
-      gap:16px;
-      align-items:center;
-      justify-content:space-between;
-      margin-bottom:28px;
-    }
-
-    .brand{
-      display:flex;
-      gap:12px;
-      align-items:center;
-    }
-    .logo{
-      width:56px;height:56px;border-radius:10px;
-      background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      display:grid;place-items:center;font-family:"Press Start 2P",monospace;
-      color:white;font-size:11px;
-      box-shadow: 0 6px 18px rgba(123,63,240,0.18);
-    }
-    .brand h1{font-size:16px;margin:0}
-    .brand p{margin:0;color:var(--muted);font-size:12px}
-
-    nav{display:flex;gap:14px;align-items:center}
-    nav a{
-      color:var(--muted);
-      text-decoration:none;
-      font-size:13px;padding:8px 10px;border-radius:8px;
-    }
-    nav a:hover{background:var(--glass); color:#fff}
-
-    /* Hero */
-    .hero{
-      display:grid;
-      grid-template-columns: 1fr 420px;
-      gap:28px;
-      align-items:center;
-      margin-bottom:36px;
-    }
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-      border-radius:var(--radius);
-      padding:22px;
-      box-shadow: 0 8px 30px rgba(2,2,6,0.6);
-      border:1px solid rgba(255,255,255,0.03);
-    }
-
-    .hero-left h2{
-      margin:0 0 8px 0;
-      font-size:22px;
-      letter-spacing:0.2px;
-      font-weight:700;
-    }
-    .lead{color:var(--muted); margin-bottom:16px}
-
-    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
-    .btn{
-      display:inline-flex;align-items:center;gap:10px;
-      padding:10px 14px;border-radius:10px;border:0;cursor:pointer;
-      font-weight:600;
-    }
-    .btn-primary{
-      background:linear-gradient(90deg,var(--accent),var(--accent-2));
-      color:white;box-shadow:0 8px 20px rgba(88,36,210,0.22)
-    }
-    .btn-outline{
-      background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)
-    }
-
-    /* Mock device / preview */
-    .device{
-      width:100%;
-      height:380px;
-      border-radius:14px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.02), transparent),
-        radial-gradient(1000px 300px at 10% 10%, rgba(123,63,240,0.06), transparent);
-      display:flex;flex-direction:column;justify-content:center;align-items:center;
-      gap:10px;color:var(--muted);
-    }
-    .screen{
-      width:85%;height:220px;border-radius:10px;background:#060509;border:1px solid rgba(255,255,255,0.03);
-      display:grid;place-items:center;font-family:"Press Start 2P",monospace;color: #bdb1ff;
-      font-size:12px;padding:18px;text-align:center;
-    }
-
-    /* Sections grid */
-    .grid-3{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
-      margin-top:18px;
-    }
-    .feature{
-      padding:16px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);
-      border:1px solid rgba(255,255,255,0.03);
-    }
-    .feature h3{margin:0 0 8px 0;font-size:14px}
-    .feature p{color:var(--muted);font-size:13px;margin:0}
-
-    /* Portfolio */
-    .portfolio{
-      margin-top:26px;
-      display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
-    }
-    .card-thumb{
-      height:140px;border-radius:10px;background:linear-gradient(120deg,rgba(123,63,240,0.14),rgba(90,43,214,0.08));
-      display:flex;justify-content:center;align-items:center;font-family:"Press Start 2P",monospace;
-      color:#fff;letter-spacing:0.8px;
-    }
-    .project-title{font-weight:700;margin:8px 0 0 0}
-    .project-desc{color:var(--muted);font-size:13px;margin:6px 0 0 0}
-
-    /* Contact */
-    .contact-grid{
-      display:grid;grid-template-columns:1fr 320px;gap:18px;margin-top:20px;
-      align-items:start;
-    }
-    form label{display:block;margin-bottom:8px;font-size:13px}
-    input,textarea,select{
-      width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.05);
-      background:transparent;color:inherit;font-size:13px;
-    }
-    textarea{min-height:120px;resize:vertical}
-
-    footer{margin-top:36px;color:var(--muted);font-size:13px;text-align:center;padding:18px 6px}
-
-    /* Responsive */
-    @media (max-width:1000px){
-      .hero{grid-template-columns:1fr}
-      .grid-3{grid-template-columns:repeat(2,1fr)}
-      .portfolio{grid-template-columns:repeat(2,1fr)}
-      .contact-grid{grid-template-columns:1fr}
-    }
-    @media (max-width:560px){
-      nav{display:none}
-      .grid-3{grid-template-columns:1fr}
-      .portfolio{grid-template-columns:1fr}
-      .brand h1{font-size:14px}
-    }
-
-    /* small utility */
-    .muted{color:var(--muted)}
-    .pill{background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;font-size:12px}
-    .kudos{display:flex;gap:8px;align-items:center}
-    .testimonial{background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);padding:14px;border-radius:10px}
+    body{font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; margin:0; background: linear-gradient(135deg,var(--bg1),#1f2b5a); color:#111; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px}
+    .container{width:100%;max-width:420px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));border-radius:20px; overflow:hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.35)}
+    .hero{position:relative;padding:34px 20px 20px;background-image:radial-gradient(circle at 10% 20%, rgba(255,255,255,0.03), transparent 20%), radial-gradient(circle at 90% 80%, rgba(0,0,0,0.04), transparent 20%); background-color: transparent}
+    .bg-shape{position:absolute;inset:0;background:linear-gradient(120deg,#2a6bd6 0%, #6a3fb7 40%, #0f8f6f 100%);opacity:0.12;mix-blend-mode:screen}
+    .profile{position:relative;display:flex;align-items:center;gap:16px;z-index:2}
+    .avatar{width:84px;height:84px;border-radius:50%;overflow:hidden;border:4px solid rgba(255,255,255,0.12);background:linear-gradient(135deg,#a7f3d0,#bfdbfe);display:flex;align-items:center;justify-content:center}
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    .meta{color:white}
+    .handle{font-size:20px;font-weight:700;margin:0}
+    .sub{margin-top:6px;font-size:14px;color:rgba(255,255,255,0.92)}
+    .cards{padding:18px;background:linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01));display:grid;gap:14px}
+    .card{display:flex;align-items:center;gap:14px;padding:16px;border-radius:12px;background:var(--card);box-shadow:0 6px 18px rgba(11,15,30,0.06);text-decoration:none;color:inherit}
+    .icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .title{font-weight:600}
+    .muted{font-size:13px;color:var(--muted);margin-top:4px}
+    /* specific icons */
+    .sociabuzz{background:linear-gradient(135deg,#e0f7ff,#e9f5ff)}
+    .saweria{background:linear-gradient(135deg,#fff0f6,#fff7f0)}
+    .wa{background:linear-gradient(135deg,#e6fff0,#f0fff7)}
+    .yt{background:linear-gradient(135deg,#fff5f5,#fff9f0)}
+    footer{padding:14px;text-align:center;font-size:13px;color:var(--muted)}
+    @media (max-width:420px){.avatar{width:72px;height:72px}.handle{font-size:18px}}
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="logo">GM</div>
-        <div>
-          <h1>NamaStudio</h1>
-          <p>Game Creator • Pixel & 3D • Dev to Publish</p>
+  <div class="container" role="main">
+    <div class="hero">
+      <div class="bg-shape" aria-hidden="true"></div>
+      <div class="profile">
+        <div class="avatar" title="Avatar pengguna">
+          <!-- Ganti src dengan URL avatar kamu -->
+          <img src="https://i.imgur.com/4HJbzEq.png" alt="avatar">
         </div>
-      </div>
-
-      <nav>
-        <a href="#services">Layanan</a>
-        <a href="#portfolio">Portofolio</a>
-        <a href="#pricing">Paket</a>
-        <a href="#contact">Kontak</a>
-        <button class="btn btn-outline" id="themeToggle" title="Toggle theme">Mode</button>
-      </nav>
-    </header>
-
-    <main>
-      <section class="hero">
-        <div class="card hero-left">
-          <h2>Buat game yang seru — dari ide sampai rilis</h2>
-          <p class="lead">Kami mengembangkan game indie & casual — desain, prototyping, programming, hingga publish ke platform mobile & desktop. Mau game pixel retro atau 3D ringan? Kita bikin.</p>
-
-          <div class="cta-row">
-            <button class="btn btn-primary" id="btnContact">Dapatkan Quote</button>
-            <button class="btn btn-outline" id="btnDemo">Lihat Demo</button>
-            <span class="pill">Free consultation 30 menit</span>
-          </div>
-
-          <div class="grid-3" style="margin-top:18px">
-            <div class="feature">
-              <h3>Full-cycle dev</h3>
-              <p>Konsep → prototipe → produksi → QA → release & support</p>
-            </div>
-            <div class="feature">
-              <h3>Art & Musik</h3>
-              <p>Pixel art, 2D sprites, dan musik chiptune / ambient sesuai gaya game.</p>
-            </div>
-            <div class="feature">
-              <h3>Monetisasi</h3>
-              <p>Model free-to-play, IAP, iklan, atau premium — strategi yang sesuai target.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="card device">
-          <div class="screen" id="screenPreview">
-            &lt; GAME PREVIEW &gt;<br><span class="muted" style="font-size:11px;margin-top:6px;display:block">Tekan "Lihat Demo" untuk preview interaktif</span>
-          </div>
-          <div style="width:85%;display:flex;justify-content:space-between;align-items:center">
-            <div class="kudos">
-              <div class="pill">10+ Game Rilis</div>
-              <div class="pill">4 Studio Kolaborasi</div>
-            </div>
-            <div class="muted" style="font-size:12px">Didukung oleh Unity & Godot</div>
-          </div>
-        </div>
-      </section>
-
-      <section id="portfolio" style="margin-top:6px">
-        <h2 style="margin:0 0 12px 0">Portofolio</h2>
-        <div class="portfolio">
-          <div class="card">
-            <div class="card-thumb">Project A</div>
-            <div class="project-title">Sky Miner</div>
-            <div class="project-desc">Arcade mining + upgrades — Mobile (2024)</div>
-          </div>
-          <div class="card">
-            <div class="card-thumb">Project B</div>
-            <div class="project-title">Forest Quest</div>
-            <div class="project-desc">2D pixel metroidvania — PC (2023)</div>
-          </div>
-          <div class="card">
-            <div class="card-thumb">Project C</div>
-            <div class="project-title">Neon Drift</div>
-            <div class="project-desc">Top-down racer — Mobile (2022)</div>
-          </div>
-        </div>
-      </section>
-
-      <section id="services" style="margin-top:22px">
-        <h2 style="margin:0 0 12px 0">Layanan Kami</h2>
-        <div class="card" style="padding:16px">
-          <ul style="margin:0;padding-left:18px;color:var(--muted)">
-            <li>Game design & dokumentasi GDD</li>
-            <li>Prototyping cepat (Playable demo)</li>
-            <li>Full development (Unity / Godot)</li>
-            <li>Art (pixel / 2D / low-poly 3D)</li>
-            <li>Sound design & music</li>
-            <li>Publishing & marketing dasar</li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="pricing" style="margin-top:22px">
-        <h2 style="margin:0 0 12px 0">Paket & Harga (contoh)</h2>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <div class="card" style="flex:1;min-width:240px">
-            <h3>Starter</h3>
-            <p class="muted">Prototipe 1 level • 2 minggu</p>
-            <p style="font-weight:700;margin-top:8px">Mulai dari Rp 5.000.000</p>
-          </div>
-          <div class="card" style="flex:1;min-width:240px">
-            <h3>Indie</h3>
-            <p class="muted">Game lengkap ringan • 2–3 bulan</p>
-            <p style="font-weight:700;margin-top:8px">Mulai dari Rp 25.000.000</p>
-          </div>
-          <div class="card" style="flex:1;min-width:240px">
-            <h3>Custom</h3>
-            <p class="muted">Sesuai kebutuhan & scope</p>
-            <p style="font-weight:700;margin-top:8px">Harga nego</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" style="margin-top:22px">
-        <h2 style="margin:0 0 12px 0">Kontak & Brief</h2>
-
-        <div class="contact-grid">
-          <div class="card">
-            <form id="contactForm" novalidate>
-              <label>Nama</label>
-              <input type="text" id="name" placeholder="Nama lengkap" required>
-
-              <label>Email</label>
-              <input type="email" id="email" placeholder="email@mu.com" required>
-
-              <label>Platform Target</label>
-              <select id="platform">
-                <option>Mobile (iOS/Android)</option>
-                <option>PC (Windows/Mac)</option>
-                <option>Web (HTML5)</option>
-                <option>Multi-platform</option>
-              </select>
-
-              <label>Pesan singkat / Brief</label>
-              <textarea id="message" placeholder="Ceritakan ide game singkatnya..." required></textarea>
-
-              <div style="display:flex;gap:10px;margin-top:12px">
-                <button type="submit" class="btn btn-primary">Kirim Pesan</button>
-                <button type="button" class="btn btn-outline" id="clearBtn">Bersihkan</button>
-              </div>
-
-              <div id="formMsg" style="margin-top:12px;color:#ffd6d6;display:none"></div>
-            </form>
-          </div>
-
-          <div class="card">
-            <h3>Alamat & Sosial</h3>
-            <p class="muted">Email: hello@namastudio.id</p>
-            <p class="muted">Instagram: @namastudio.games</p>
-            <p class="muted">Telegram: t.me/namastudio</p>
-
-            <div style="margin-top:12px">
-              <h4 style="margin:8px 0 6px 0">Testimonial</h4>
-              <div class="testimonial">
-                <strong>Raka / Developer</strong>
-                <p class="muted" style="margin:6px 0 0 0">"Cepat dan profesional — prototipe jadi dalam 10 hari!"</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </main>
-
-    <footer>
-      © <span id="year"></span> NamaStudio — All rights reserved • Buat game, bagikan kebahagiaan.
-    </footer>
-  </div>
-
-  <!-- Modal (hidden) -->
-  <div id="demoModal" aria-hidden="true" style="position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:60">
-    <div style="width:90%;max-width:780px;background:#0b0810;border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.04)">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-        <strong>Demo Interaktif — Prototype</strong>
-        <button id="closeModal" class="btn btn-outline">Tutup</button>
-      </div>
-      <div style="background:#060509;padding:14px;border-radius:8px;color:var(--muted)">
-        <!-- Simple interactive demo: clickable "Play" -->
-        <div id="demoArea" style="display:grid;place-items:center;min-height:220px;font-family:'Press Start 2P',monospace;color:#cfc3ff">
-          Tekan Play untuk lihat aksi...
-          <div style="margin-top:18px">
-            <button id="playBtn" class="btn btn-primary">Play</button>
-            <button id="stopBtn" class="btn btn-outline">Stop</button>
-          </div>
+        <div class="meta">
+          <h1 class="handle">@Saskehhaja</h1>
+          <div class="sub">UwU makasih udah mampir dan dukung Saskeh 💕</div>
         </div>
       </div>
     </div>
+
+    <div class="cards">
+      <!-- Sociabuzz -->
+      <a class="card" href="#" target="_blank" rel="noopener noreferrer">
+        <div class="icon sociabuzz" aria-hidden="true">
+          <!-- simple S icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12C20 16.4183 16.4183 20 12 20C9.87827 20 8 18.8215 8 17V15" stroke="#0ea5a4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="title">Donate Penambah Waktu</div>
+          <div class="muted">Sociabuzz — ganti tautan dengan akun kamu</div>
+        </div>
+      </a>
+
+      <!-- Saweria -->
+      <a class="card" href="#" target="_blank" rel="noopener noreferrer">
+        <div class="icon saweria">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7C6 4 8 4 12 4C16 4 18 7 20 9C21 10.5 20.5 13 18 15C15.5 17 12 20 7 20C4 20 3 16 4 13" stroke="#f97316" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="title">Donate Saweria</div>
+          <div class="muted">Saweria — cocok untuk stream dan creator</div>
+        </div>
+      </a>
+
+      <!-- WhatsApp -->
+      <a class="card" href="https://wa.me/628xxxxxxxxxx" target="_blank" rel="noopener noreferrer">
+        <div class="icon wa">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 12.15C21 6.96 16.52 3 12 3C7.48 3 3 6.96 3 12.15C3 14.7 4 16.9 6 18.5V21L9.1 19.6C10.3 19.9 11.6 20.05 13 19.95C18.52 19.2 21 15.25 21 12.15Z" stroke="#16a34a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="title">Saluran WhatsApp</div>
+          <div class="muted">Link WA — ganti nomor sesuai akun</div>
+        </div>
+      </a>
+
+      <!-- YouTube -->
+      <a class="card" href="#" target="_blank" rel="noopener noreferrer">
+        <div class="icon yt">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M22 7.5C22 7.5 21.2 5.9 19.6 5.6C17.6 5.2 12 5.2 12 5.2C12 5.2 6.4 5.2 4.4 5.6C2.8 5.9 2 7.5 2 7.5C2 7.5 1.2 9.3 1.2 11.1V12.9C1.2 14.7 2 16.5 2 16.5C2 16.5 2.8 18.1 4.4 18.4C6.4 18.8 12 18.8 12 18.8C12 18.8 17.6 18.8 19.6 18.4C21.2 18.1 22 16.5 22 16.5C22 16.5 22.8 14.7 22.8 12.9V11.1C22.8 9.3 22 7.5 22 7.5Z" stroke="#ef4444" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="title">Channel YouTube</div>
+          <div class="muted">Tautan channel — ganti dengan link ke channel mu</div>
+        </div>
+      </a>
+    </div>
+
+    <footer>Ganti tautan dan avatar di file HTML sebelum di-publish.</footer>
   </div>
-
-  <script>
-    // small interactive JS
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    const demoModal = document.getElementById('demoModal');
-    const btnDemo = document.getElementById('btnDemo');
-    const closeModal = document.getElementById('closeModal');
-    const btnContact = document.getElementById('btnContact');
-    const screen = document.getElementById('screenPreview');
-
-    btnDemo.addEventListener('click', ()=>{ demoModal.style.display='flex'; demoModal.setAttribute('aria-hidden','false'); });
-    closeModal.addEventListener('click', ()=>{ demoModal.style.display='none'; demoModal.setAttribute('aria-hidden','true'); });
-
-    document.getElementById('playBtn').addEventListener('click', ()=>{
-      screen.innerHTML = '<div style="font-size:12px">▶️ Demo Running<br><span class="muted" style="font-size:11px">Klik "Dapatkan Quote" untuk lanjut</span></div>';
-    });
-    document.getElementById('stopBtn').addEventListener('click', ()=>{
-      screen.innerHTML = '&lt; GAME PREVIEW &gt;<br><span class="muted" style="font-size:11px">Tekan "Lihat Demo" untuk preview interaktif</span>';
-    });
-
-    // Theme toggle (simple)
-    const themeToggle = document.getElementById('themeToggle');
-    themeToggle.addEventListener('click', ()=>{
-      document.documentElement.style.setProperty('--accent', getComputedStyle(document.documentElement).getPropertyValue('--accent-2').trim() || '#5a2bd6');
-      // simple visual feedback
-      themeToggle.textContent = themeToggle.textContent === 'Mode' ? 'Mode ✓' : 'Mode';
-    });
-
-    // Contact form basic validation + fake send
-    const form = document.getElementById('contactForm');
-    const formMsg = document.getElementById('formMsg');
-    form.addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const message = document.getElementById('message').value.trim();
-
-      if(!name || !email || !message){
-        formMsg.style.display = 'block';
-        formMsg.textContent = 'Mohon isi semua field yang diperlukan.';
-        return;
-      }
-
-      // very basic email pattern
-      const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
-      if(!emailPattern.test(email)){
-        formMsg.style.display = 'block';
-        formMsg.textContent = 'Mohon masukkan email yang valid.';
-        return;
-      }
-
-      formMsg.style.display = 'block';
-      formMsg.style.color = '#b8ffd6';
-      formMsg.textContent = 'Terima kasih! Pesan Anda telah dikirim (demo). Kami akan menghubungi dalam waktu kerja.';
-      form.reset();
-    });
-
-    document.getElementById('clearBtn').addEventListener('click', ()=>{ form.reset(); formMsg.style.display='none' });
-
-    // CTA: scroll to contact
-    btnContact.addEventListener('click', ()=>{ document.getElementById('contact').scrollIntoView({behavior:'smooth'}); });
-  </script>
 </body>
-  </html>
+</html>
