@@ -1,66 +1,446 @@
-<!DOCTYPE html><html lang="id">
+<!doctype html>
+<html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jasa DeluMc</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NamaStudio — Game Creator</title>
+
+  <!-- Google font (retro/pixel feel). Ganti/atau hapus jika tak mau -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", sans-serif;
-      background: #f2f2f7;
-      color: #333;
-    }.container {
-  max-width: 480px;
-  margin: auto;
-  padding: 30px 20px;
-  text-align: center;
-}
+    :root{
+      --bg:#0e0b13;           /* very dark */
+      --panel:#12101a;
+      --accent:#7b3ff0;       /* purple */
+      --accent-2:#5a2bd6;
+      --muted:#bfb8d9;
+      --glass: rgba(255,255,255,0.04);
+      --radius:12px;
+      --maxwidth:1100px;
+    }
 
-.profile-pic {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #ddd;
-  margin-bottom: 15px;
-}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, var(--bg), #07060a 120%);
+      color: #eee;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      padding:24px;
+      display:flex;
+      justify-content:center;
+    }
 
-.username {
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin-bottom: 25px;
-  color: #222;
-}
+    .container{
+      width:100%;
+      max-width:var(--maxwidth);
+    }
 
-.menu-item {
-  display: block;
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 10px 0;
-  padding: 14px 18px;
-  text-decoration: none;
-  color: #000;
-  font-size: 1rem;
-  font-weight: 500;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+    header{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:28px;
+    }
 
-.menu-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .logo{
+      width:56px;height:56px;border-radius:10px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:grid;place-items:center;font-family:"Press Start 2P",monospace;
+      color:white;font-size:11px;
+      box-shadow: 0 6px 18px rgba(123,63,240,0.18);
+    }
+    .brand h1{font-size:16px;margin:0}
+    .brand p{margin:0;color:var(--muted);font-size:12px}
 
-.footer {
-  text-align: center;
-  margin-top: 40px;
-  font-size: 0.85rem;
-  color: #888;
-}
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{
+      color:var(--muted);
+      text-decoration:none;
+      font-size:13px;padding:8px 10px;border-radius:8px;
+    }
+    nav a:hover{background:var(--glass); color:#fff}
 
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:28px;
+      align-items:center;
+      margin-bottom:36px;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow: 0 8px 30px rgba(2,2,6,0.6);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    .hero-left h2{
+      margin:0 0 8px 0;
+      font-size:22px;
+      letter-spacing:0.2px;
+      font-weight:700;
+    }
+    .lead{color:var(--muted); margin-bottom:16px}
+
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:10px 14px;border-radius:10px;border:0;cursor:pointer;
+      font-weight:600;
+    }
+    .btn-primary{
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:white;box-shadow:0 8px 20px rgba(88,36,210,0.22)
+    }
+    .btn-outline{
+      background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)
+    }
+
+    /* Mock device / preview */
+    .device{
+      width:100%;
+      height:380px;
+      border-radius:14px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.02), transparent),
+        radial-gradient(1000px 300px at 10% 10%, rgba(123,63,240,0.06), transparent);
+      display:flex;flex-direction:column;justify-content:center;align-items:center;
+      gap:10px;color:var(--muted);
+    }
+    .screen{
+      width:85%;height:220px;border-radius:10px;background:#060509;border:1px solid rgba(255,255,255,0.03);
+      display:grid;place-items:center;font-family:"Press Start 2P",monospace;color: #bdb1ff;
+      font-size:12px;padding:18px;text-align:center;
+    }
+
+    /* Sections grid */
+    .grid-3{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+      margin-top:18px;
+    }
+    .feature{
+      padding:16px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .feature h3{margin:0 0 8px 0;font-size:14px}
+    .feature p{color:var(--muted);font-size:13px;margin:0}
+
+    /* Portfolio */
+    .portfolio{
+      margin-top:26px;
+      display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+    }
+    .card-thumb{
+      height:140px;border-radius:10px;background:linear-gradient(120deg,rgba(123,63,240,0.14),rgba(90,43,214,0.08));
+      display:flex;justify-content:center;align-items:center;font-family:"Press Start 2P",monospace;
+      color:#fff;letter-spacing:0.8px;
+    }
+    .project-title{font-weight:700;margin:8px 0 0 0}
+    .project-desc{color:var(--muted);font-size:13px;margin:6px 0 0 0}
+
+    /* Contact */
+    .contact-grid{
+      display:grid;grid-template-columns:1fr 320px;gap:18px;margin-top:20px;
+      align-items:start;
+    }
+    form label{display:block;margin-bottom:8px;font-size:13px}
+    input,textarea,select{
+      width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.05);
+      background:transparent;color:inherit;font-size:13px;
+    }
+    textarea{min-height:120px;resize:vertical}
+
+    footer{margin-top:36px;color:var(--muted);font-size:13px;text-align:center;padding:18px 6px}
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .hero{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:repeat(2,1fr)}
+      .portfolio{grid-template-columns:repeat(2,1fr)}
+      .contact-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:560px){
+      nav{display:none}
+      .grid-3{grid-template-columns:1fr}
+      .portfolio{grid-template-columns:1fr}
+      .brand h1{font-size:14px}
+    }
+
+    /* small utility */
+    .muted{color:var(--muted)}
+    .pill{background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;font-size:12px}
+    .kudos{display:flex;gap:8px;align-items:center}
+    .testimonial{background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);padding:14px;border-radius:10px}
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="foto.jpg" alt="Foto Profil" class="profile-pic" />
-    <div class="username">Jasa DeluMc</div><a
+    <header>
+      <div class="brand">
+        <div class="logo">GM</div>
+        <div>
+          <h1>NamaStudio</h1>
+          <p>Game Creator • Pixel & 3D • Dev to Publish</p>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#services">Layanan</a>
+        <a href="#portfolio">Portofolio</a>
+        <a href="#pricing">Paket</a>
+        <a href="#contact">Kontak</a>
+        <button class="btn btn-outline" id="themeToggle" title="Toggle theme">Mode</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="card hero-left">
+          <h2>Buat game yang seru — dari ide sampai rilis</h2>
+          <p class="lead">Kami mengembangkan game indie & casual — desain, prototyping, programming, hingga publish ke platform mobile & desktop. Mau game pixel retro atau 3D ringan? Kita bikin.</p>
+
+          <div class="cta-row">
+            <button class="btn btn-primary" id="btnContact">Dapatkan Quote</button>
+            <button class="btn btn-outline" id="btnDemo">Lihat Demo</button>
+            <span class="pill">Free consultation 30 menit</span>
+          </div>
+
+          <div class="grid-3" style="margin-top:18px">
+            <div class="feature">
+              <h3>Full-cycle dev</h3>
+              <p>Konsep → prototipe → produksi → QA → release & support</p>
+            </div>
+            <div class="feature">
+              <h3>Art & Musik</h3>
+              <p>Pixel art, 2D sprites, dan musik chiptune / ambient sesuai gaya game.</p>
+            </div>
+            <div class="feature">
+              <h3>Monetisasi</h3>
+              <p>Model free-to-play, IAP, iklan, atau premium — strategi yang sesuai target.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card device">
+          <div class="screen" id="screenPreview">
+            &lt; GAME PREVIEW &gt;<br><span class="muted" style="font-size:11px;margin-top:6px;display:block">Tekan "Lihat Demo" untuk preview interaktif</span>
+          </div>
+          <div style="width:85%;display:flex;justify-content:space-between;align-items:center">
+            <div class="kudos">
+              <div class="pill">10+ Game Rilis</div>
+              <div class="pill">4 Studio Kolaborasi</div>
+            </div>
+            <div class="muted" style="font-size:12px">Didukung oleh Unity & Godot</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio" style="margin-top:6px">
+        <h2 style="margin:0 0 12px 0">Portofolio</h2>
+        <div class="portfolio">
+          <div class="card">
+            <div class="card-thumb">Project A</div>
+            <div class="project-title">Sky Miner</div>
+            <div class="project-desc">Arcade mining + upgrades — Mobile (2024)</div>
+          </div>
+          <div class="card">
+            <div class="card-thumb">Project B</div>
+            <div class="project-title">Forest Quest</div>
+            <div class="project-desc">2D pixel metroidvania — PC (2023)</div>
+          </div>
+          <div class="card">
+            <div class="card-thumb">Project C</div>
+            <div class="project-title">Neon Drift</div>
+            <div class="project-desc">Top-down racer — Mobile (2022)</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" style="margin-top:22px">
+        <h2 style="margin:0 0 12px 0">Layanan Kami</h2>
+        <div class="card" style="padding:16px">
+          <ul style="margin:0;padding-left:18px;color:var(--muted)">
+            <li>Game design & dokumentasi GDD</li>
+            <li>Prototyping cepat (Playable demo)</li>
+            <li>Full development (Unity / Godot)</li>
+            <li>Art (pixel / 2D / low-poly 3D)</li>
+            <li>Sound design & music</li>
+            <li>Publishing & marketing dasar</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="pricing" style="margin-top:22px">
+        <h2 style="margin:0 0 12px 0">Paket & Harga (contoh)</h2>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <div class="card" style="flex:1;min-width:240px">
+            <h3>Starter</h3>
+            <p class="muted">Prototipe 1 level • 2 minggu</p>
+            <p style="font-weight:700;margin-top:8px">Mulai dari Rp 5.000.000</p>
+          </div>
+          <div class="card" style="flex:1;min-width:240px">
+            <h3>Indie</h3>
+            <p class="muted">Game lengkap ringan • 2–3 bulan</p>
+            <p style="font-weight:700;margin-top:8px">Mulai dari Rp 25.000.000</p>
+          </div>
+          <div class="card" style="flex:1;min-width:240px">
+            <h3>Custom</h3>
+            <p class="muted">Sesuai kebutuhan & scope</p>
+            <p style="font-weight:700;margin-top:8px">Harga nego</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" style="margin-top:22px">
+        <h2 style="margin:0 0 12px 0">Kontak & Brief</h2>
+
+        <div class="contact-grid">
+          <div class="card">
+            <form id="contactForm" novalidate>
+              <label>Nama</label>
+              <input type="text" id="name" placeholder="Nama lengkap" required>
+
+              <label>Email</label>
+              <input type="email" id="email" placeholder="email@mu.com" required>
+
+              <label>Platform Target</label>
+              <select id="platform">
+                <option>Mobile (iOS/Android)</option>
+                <option>PC (Windows/Mac)</option>
+                <option>Web (HTML5)</option>
+                <option>Multi-platform</option>
+              </select>
+
+              <label>Pesan singkat / Brief</label>
+              <textarea id="message" placeholder="Ceritakan ide game singkatnya..." required></textarea>
+
+              <div style="display:flex;gap:10px;margin-top:12px">
+                <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+                <button type="button" class="btn btn-outline" id="clearBtn">Bersihkan</button>
+              </div>
+
+              <div id="formMsg" style="margin-top:12px;color:#ffd6d6;display:none"></div>
+            </form>
+          </div>
+
+          <div class="card">
+            <h3>Alamat & Sosial</h3>
+            <p class="muted">Email: hello@namastudio.id</p>
+            <p class="muted">Instagram: @namastudio.games</p>
+            <p class="muted">Telegram: t.me/namastudio</p>
+
+            <div style="margin-top:12px">
+              <h4 style="margin:8px 0 6px 0">Testimonial</h4>
+              <div class="testimonial">
+                <strong>Raka / Developer</strong>
+                <p class="muted" style="margin:6px 0 0 0">"Cepat dan profesional — prototipe jadi dalam 10 hari!"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      © <span id="year"></span> NamaStudio — All rights reserved • Buat game, bagikan kebahagiaan.
+    </footer>
+  </div>
+
+  <!-- Modal (hidden) -->
+  <div id="demoModal" aria-hidden="true" style="position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:60">
+    <div style="width:90%;max-width:780px;background:#0b0810;border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.04)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <strong>Demo Interaktif — Prototype</strong>
+        <button id="closeModal" class="btn btn-outline">Tutup</button>
+      </div>
+      <div style="background:#060509;padding:14px;border-radius:8px;color:var(--muted)">
+        <!-- Simple interactive demo: clickable "Play" -->
+        <div id="demoArea" style="display:grid;place-items:center;min-height:220px;font-family:'Press Start 2P',monospace;color:#cfc3ff">
+          Tekan Play untuk lihat aksi...
+          <div style="margin-top:18px">
+            <button id="playBtn" class="btn btn-primary">Play</button>
+            <button id="stopBtn" class="btn btn-outline">Stop</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // small interactive JS
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const demoModal = document.getElementById('demoModal');
+    const btnDemo = document.getElementById('btnDemo');
+    const closeModal = document.getElementById('closeModal');
+    const btnContact = document.getElementById('btnContact');
+    const screen = document.getElementById('screenPreview');
+
+    btnDemo.addEventListener('click', ()=>{ demoModal.style.display='flex'; demoModal.setAttribute('aria-hidden','false'); });
+    closeModal.addEventListener('click', ()=>{ demoModal.style.display='none'; demoModal.setAttribute('aria-hidden','true'); });
+
+    document.getElementById('playBtn').addEventListener('click', ()=>{
+      screen.innerHTML = '<div style="font-size:12px">▶️ Demo Running<br><span class="muted" style="font-size:11px">Klik "Dapatkan Quote" untuk lanjut</span></div>';
+    });
+    document.getElementById('stopBtn').addEventListener('click', ()=>{
+      screen.innerHTML = '&lt; GAME PREVIEW &gt;<br><span class="muted" style="font-size:11px">Tekan "Lihat Demo" untuk preview interaktif</span>';
+    });
+
+    // Theme toggle (simple)
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', ()=>{
+      document.documentElement.style.setProperty('--accent', getComputedStyle(document.documentElement).getPropertyValue('--accent-2').trim() || '#5a2bd6');
+      // simple visual feedback
+      themeToggle.textContent = themeToggle.textContent === 'Mode' ? 'Mode ✓' : 'Mode';
+    });
+
+    // Contact form basic validation + fake send
+    const form = document.getElementById('contactForm');
+    const formMsg = document.getElementById('formMsg');
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if(!name || !email || !message){
+        formMsg.style.display = 'block';
+        formMsg.textContent = 'Mohon isi semua field yang diperlukan.';
+        return;
+      }
+
+      // very basic email pattern
+      const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+      if(!emailPattern.test(email)){
+        formMsg.style.display = 'block';
+        formMsg.textContent = 'Mohon masukkan email yang valid.';
+        return;
+      }
+
+      formMsg.style.display = 'block';
+      formMsg.style.color = '#b8ffd6';
+      formMsg.textContent = 'Terima kasih! Pesan Anda telah dikirim (demo). Kami akan menghubungi dalam waktu kerja.';
+      form.reset();
+    });
+
+    document.getElementById('clearBtn').addEventListener('click', ()=>{ form.reset(); formMsg.style.display='none' });
+
+    // CTA: scroll to contact
+    btnContact.addEventListener('click', ()=>{ document.getElementById('contact').scrollIntoView({behavior:'smooth'}); });
+  </script>
+</body>
+  </html>
